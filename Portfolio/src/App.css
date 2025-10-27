@@ -1,0 +1,393 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; 
+}
+body{
+background-color:var(--background);
+text-align: justify;
+line-height: 1.6;
+
+
+}
+:root {
+--header-green: #00F260 ;
+---header-blue: #0575E6 ;
+--background: #f4f5f6;
+--shadow:#262a2e;
+--main-transition-duration:0.3s;
+--darkwhite:#f1f1f1;
+---header-blue-light:#6aabeb;
+/* for the fonts  */
+ --biggest-font: 5em; /* For the biggest headlines */
+  --big-font: 1.3em; /* For regular headlines */
+  --medium-font:1.6em ; /* For medium-sized text */
+}
+/* Start The header */
+
+/* start home header */
+header {
+text-align: center;
+position: absolute;
+width: 100%;
+background-size: cover;
+background-attachment: fixed;
+overflow: hidden;
+box-shadow: 0 0 20px #cfcfcf;
+border-radius: 0 0 85% 85% / 30%;
+background-color: white;
+box-shadow: 0 0 10px #cfcfcf;
+
+}
+#header-page2{
+position: fixed;
+z-index: 999;
+}
+header .overlay{
+width: 100%;
+height: 100%;
+color: #FFF;
+text-shadow: 1px 1px 1px #333;  
+background-image: linear-gradient( 135deg,  #0575E6 10%, #00F260 100%);	
+}
+header .overlay ul{
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+
+}
+header .overlay a {
+text-decoration: none;
+color: white;
+margin-left:20px;
+
+}
+header .overlay ul{list-style-type: none;}
+header .overlay .div-logo .logo img{
+width: 5%;
+}
+h1 {
+font-family: 'Dancing Script', cursive;
+font-size: var(--biggest-font);
+margin-bottom: 30px;
+}
+.fa-house{
+color:#fff;
+}
+/* End The header */
+
+/* Start common styles */
+.image{
+width: 400px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.main-nav li{
+z-index: 111;
+}
+
+/* End common style */
+.page-size{
+padding: 5% 20% ;
+}
+@media(max-width:767px){
+.page-size{
+  padding: 1% 10% ;
+}
+}
+/* ///////////////////////////////////////////////////start index html page //////////////////////////////////*/
+
+#particles-js{
+position: relative;
+height: 350px;
+width: 100%;
+}
+.mainphoto{
+position: absolute;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 10%;
+width: 100%;
+flex-wrap: wrap;
+z-index: 99;
+}
+.mainphoto span{
+margin-left: 50px;
+}
+@media(max-width:767px){
+.mainphoto h1 {
+  font-size: 30px;
+}
+}
+@media(max-width:767px){
+.mainphoto h1 >span {
+  font-size: 30px;
+}
+}
+.mainphoto span, .mainphoto h1{
+font-size: 75px;
+}
+.mainphoto img{
+z-index: 9;
+margin-left: 20px;
+margin-top: 7%;
+width: 173px;
+border-radius: 100px;
+}
+@media(max-width:767px){
+.mainphoto img {
+  width: 60px;
+}
+}
+/****************Start My projects********************/
+
+/*** start main-part ***/
+.my-project{
+ padding: 2% 8%;
+}
+.my-project ul li {
+margin-top: 2%;
+}
+.my-project p{
+font-size:var(--big-font);
+font-weight: bold;
+}
+/*** End main-part ***/
+/*** Start About me ***/
+#About-me {
+margin: 0 auto; 
+padding:  2% 8%; 
+}
+#About-me span{
+font-size: var(--medium-font);
+font-weight: bold;
+}
+/*** End About me ***/
+
+/* Start Artist - Page */
+#artist-page{
+padding:  9% 8% 2%;  
+}
+
+.dis-Erion {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+.dis-Erion h4 {
+margin-bottom: 20px;
+}
+
+.dis-Erion1 {
+display: flex;
+align-items: center; 
+flex-wrap: wrap;
+padding-bottom: 3%;
+}
+
+
+.dis-Erion1 p {
+flex: 1; 
+padding-right: 30px; 
+}
+
+.dis-Erion1 .empathy{
+width: 35vw;
+height: 100vh;
+
+}
+.dis-Erion1 .vision{
+max-width: 100%; /* Adjust image width as needed */
+width: 480px;
+margin-top: 2%;
+}
+
+.dis-Erion2 {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+.dis-Erion2 .image-row {
+display: flex; 
+justify-content: center;
+
+
+}
+
+.dis-Erion2 img {
+width: 30vw;
+margin-left: 40px;
+}
+
+/* Define */
+
+.define-Erion{
+display: flex;
+flex-direction: column;
+align-items:center;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 40px;
+}
+.define-Erion .image-row{
+padding: 30px 0px ;
+}
+
+.define-Erion img{
+width:30vw ;
+/* height: 10vh; */
+}
+/* End Artist - Page */
+
+#low-proto{
+width: 50vw;
+height: 73vh;
+}
+
+
+#prototype-erion video {
+width: 100vw;
+height:90vh; 
+}
+
+video {
+width: 60vw; /* Set the width of the video to 100% */
+height: 60vh; /* Maintain aspect ratio */
+}
+
+/* Develop */
+.Dev-del-erion{
+display: flex;
+flex-direction: column;
+align-items:center;
+justify-content: center;
+flex-wrap: wrap;
+margin-top: 40px;
+}
+/* ********************  Start tutorial page***************/
+#toturial-page{
+padding:  9% 8% 2%;  
+}
+
+.toturial-page img{
+width: 20vw;
+}
+#resize{
+width: 18vw;
+}
+#toturial-page .image-row img{
+width: 30vw;
+}
+
+.persona-text {
+display: flex;
+align-items: center; 
+}
+#define-tutorial{
+padding:1%;
+}
+.persona-text img {
+max-width: 100%;
+width: 34vw;
+height: auto;
+margin-right: 20px; 
+}
+
+.persona-text p {
+flex: 1; 
+}
+
+
+
+
+/* ********************  End tutorial page*************** */
+/* ********************  End assignment page*************** */
+
+.assignment-page{
+padding:  11% 8% 2%;
+}
+
+#assignment-page img{
+width: 34vw;
+height: 45vh;
+}
+#assignment-page p{
+margin-top: 1.2rem;
+}
+.blog3{
+margin: 0% 0.6% 0%  5%;
+}
+#assignment-page video{
+  width: 34vw;
+  height: 49vh;
+}
+#assignment-page .image-row{
+padding: 1% 5% ;
+}
+
+.step {
+  display: none;
+}
+.common-btn{
+  border: 1px solid var(--header-green);
+  border-radius: 3px;
+}
+
+.common-btn:hover {
+  background: white;
+  color: blue;
+}
+  
+.common-btn {
+  margin: auto;
+  padding: 0.7%;
+}
+
+/* ********************  End assignment page*************** */
+/****************Start footer section********************/
+footer{
+color: white;
+position: relative;
+background-image: linear-gradient( 135deg,  #0575E6 10%, #00F260 100%);
+padding: 20px 20px  ; 
+box-shadow: white 0px 0px 6px ;}
+#footer .footercontainer .footerbox p{
+  color: white;
+  font-size: 14px;
+}
+.footercontainer{
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+gap: 20px;
+}
+.footer .footercontainer .footerbox ul{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+}
+footer .footercontainer .footerbox ul  {
+list-style-type: none;
+}
+footer .footercontainer .footerbox h3{
+display: flex;
+align-items: center;
+justify-content: center;
+padding-left: 35px;
+}
+footer .footercontainer .footerbox ul li  {
+margin: 20px 0px 0px 20px;
+}
+.fa-brands{
+color:white ;
+}
+
+/****************End footer section********************/
+
+
+
