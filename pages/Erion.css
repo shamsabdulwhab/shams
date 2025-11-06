@@ -1,0 +1,157 @@
+.erion-page {
+  width: 100%;
+}
+
+.artist-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.artist-page section {
+  margin-bottom: 60px;
+}
+
+.artist-page h4 {
+  font-size: var(--medium-font);
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.dis-Erion1 {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.dis-Erion1 p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.dis-Erion1 .vision {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+.dis-Erion1 .empathy {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.dis-Erion2 {
+  margin-top: 40px;
+}
+
+.dis-Erion2 p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.dis-Erion2 strong {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.image-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-row img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 300px;
+}
+
+.define-Erion {
+  margin-top: 60px;
+}
+
+.define-Erion p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.define-Erion video {
+  width: 100%;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+#low-proto {
+  max-width: 500px;
+}
+
+.Dev-del-erion {
+  margin-top: 60px;
+}
+
+.Dev-del-erion p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.Dev-del-erion a {
+  color: var(--header-blue);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.Dev-del-erion a:hover {
+  color: var(--header-green);
+  text-decoration: underline;
+}
+
+.Dev-del-erion strong {
+  color: #333;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .artist-page {
+    padding: 20px 15px;
+  }
+
+  .image-row {
+    flex-direction: column;
+  }
+
+  .image-row img {
+    min-width: 100%;
+  }
+
+  .dis-Erion1 {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .artist-page h4 {
+    font-size: 1.3rem;
+  }
+}
+

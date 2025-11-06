@@ -1,0 +1,103 @@
+/****************Start footer section********************/
+footer{
+    color: white;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient( 135deg,  #0575E6 10%, #00F260 100%);
+    padding: 1rem; 
+    box-shadow: white 0px 0px 6px;
+    margin-top: auto; /* This ensures footer stays at bottom */
+}
+    #footer .footercontainer .footerbox p{
+      color: white;
+      font-size: 14px;
+    }
+    .footercontainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    }
+    
+    .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    }
+    
+    .footer-logo {
+    flex-shrink: 0;
+    }
+    
+    .footer-name-social h3 {
+    margin: 0 0 10px 0;
+    color: white;
+    font-size: 18px;
+    }
+    
+    .footer .footercontainer .footer-left ul{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    }
+    
+    footer .footercontainer .footer-left ul  {
+    list-style-type: none;
+    }
+    
+    footer .footercontainer .footer-left ul li  {
+    margin: 0;
+    }
+    
+    .footer-center {
+    text-align: center;
+    }
+    
+    .footer-center p {
+    margin: 5px 0;
+    }
+    .fa-brands{
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s ease;
+    }
+    
+    .fa-brands:hover {
+    color: #00F260;
+    }
+    
+    .email-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    }
+    
+    .email-link:hover {
+    color: #00F260;
+    text-decoration: underline;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+    .footercontainer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .footer-left {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .footer-center {
+        order: -1;
+    }
+    }
+    
+    /****************End footer section********************/
+    

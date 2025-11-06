@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth; 
+}
+body{
+  background-color:var(--background);
+  text-align: justify;
+  line-height: 1.6;
+  
+}
+:root {
+  --header-green: #00F260 ;
+  ---header-blue: #0575E6 ;
+  --background: #f4f5f6;
+  --shadow:#262a2e;
+  --main-transition-duration:0.3s;
+  --darkwhite:#f1f1f1;
+  ---header-blue-light:#6aabeb;
+  /* for the fonts  */
+   --biggest-font: 5em; /* For the biggest headlines */
+    --big-font: 1.3em; /* For regular headlines */
+    --medium-font:1.6em ; /* For medium-sized text */
+}
+
+/* start home header */
+header {
+	text-align: center;
+  position: relative; /* Changed from absolute to relative */
+	width: 100%;
+	background-size: cover;
+	background-attachment: fixed;
+	overflow: hidden;
+  box-shadow: 0 0 20px #cfcfcf;
+	border-radius: 0 0 85% 85% / 30%;
+  background-image: linear-gradient(135deg, #0575E6 10%, #00F260 100%);
+  box-shadow: 0 0 10px #cfcfcf;
+  min-height: 90vh; 
+}
+#header-page2{
+  position: fixed;
+  z-index: 999;
+}
+header .overlay{
+	width: 100%;
+	height: 100%;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;  
+  background: transparent; 
+}
+header .overlay ul{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+header .overlay a {
+  text-decoration: none;
+  color: white;
+  margin-left:20px;
+  transition: color 0.3s ease;
+}
+
+header .overlay a:hover {
+  color: #00F260;
+}
+header .overlay ul{list-style-type: none;}
+
+header .overlay .div-logo{
+  width: 100%;
+}
+h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: var(--biggest-font);
+	margin-bottom: 30px;
+}
+.fa-house{
+  color:#fff;
+}
+
+
+
+.mainphoto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;        
+  height: 130px;        
+  border-radius: 50%;    
+  overflow: hidden;     
+  margin: 0 auto;
+  margin-left: 46vw;
+}
+
+.mainphoto svg {
+  width: 100%;           
+  height: 100%;          
+  object-fit: cover;     
+}
+/* End The header */
+/* Responsive */
+@media (max-width: 1024px) {
+  h1 { font-size: 3rem; }
+  header .overlay a { margin-left: 12px; }
+}
+
+@media (max-width: 768px) {
+  header { position: relative; border-radius: 0 0 60% 60% / 20%; }
+  header .overlay ul { flex-direction: column; gap: 8px; }
+  h1 { font-size: 2.2rem; }
+  .mainphoto img { width: 120px; margin-top: 24px; }
+}
+
+@media (max-width: 480px) {
+  header .overlay a { margin-left: 8px; }
+  h1 { font-size: 1.8rem; }
+  .mainphoto img { width: 80px; margin-top: 16px; }
+}

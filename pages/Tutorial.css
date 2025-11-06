@@ -1,0 +1,188 @@
+.tutorial-page {
+  width: 100%;
+}
+
+.toturial-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.toturial-page section {
+  margin-bottom: 60px;
+}
+
+.toturial-page h4 {
+  font-size: var(--medium-font);
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.dis-tutorial p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.dis-tutorial img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  margin: 15px 10px;
+}
+
+#resize {
+  max-width: 300px;
+}
+
+#resize1 {
+  max-width: 400px;
+}
+
+.image-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image-row img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 300px;
+}
+
+.define-tutorial {
+  margin-top: 60px;
+}
+
+.define-tutorial p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.persona-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.persona-text > div {
+  display: flex;
+  justify-content: center;
+}
+
+.persona-text img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 600px;
+}
+
+.persona-text p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.persona-text strong {
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.develop-tutorial {
+  margin-top: 60px;
+}
+
+.develop-tutorial p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.prototype-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.prototype-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.deliver-tutorial {
+  margin-top: 60px;
+}
+
+.deliver-tutorial p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.deliver-tutorial a {
+  color: var(--header-blue);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.deliver-tutorial a:hover {
+  color: var(--header-green);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .toturial-page {
+    padding: 20px 15px;
+  }
+
+  .image-row {
+    flex-direction: column;
+  }
+
+  .image-row img {
+    min-width: 100%;
+  }
+
+  .persona-text {
+    gap: 20px;
+  }
+
+  .prototype-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dis-tutorial img {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .toturial-page h4 {
+    font-size: 1.3rem;
+  }
+
+  #resize,
+  #resize1 {
+    max-width: 100%;
+  }
+}
+
