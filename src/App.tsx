@@ -10,6 +10,7 @@ import Internship from '../pages/Internship'
 import Aiwhat from '../pages/Aiwhat'
 import Hack from '../pages/Hack';
 import ForParents from '../pages/ForParents';
+import About from '../pages/About';
 
 function AppContent() {
   const location = useLocation();
@@ -21,7 +22,8 @@ function AppContent() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/About" element={<div>About Page</div>} />
+          <Route path="/About" element={<About />} />
+          <Route path="/about" element={<About />} />
           <Route path="/Erion" element={<Erion />} />
           <Route path="/Tutorial" element={<Tutorial />} />
           <Route path="/Internship" element={<Internship />} />

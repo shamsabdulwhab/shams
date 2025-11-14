@@ -38,6 +38,22 @@ header {
   box-shadow: 0 0 10px #cfcfcf;
   min-height: 90vh; 
 }
+
+header .particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+header .overlay {
+  position: relative;
+  z-index: 1;
+}
 #header-page2{
   position: fixed;
   z-index: 999;
@@ -73,7 +89,7 @@ header .overlay .div-logo{
 }
 h1 {
 	font-family: 'Dancing Script', cursive;
-	font-size: var(--biggest-font);
+	font-size: 3.5em;
 	margin-bottom: 30px;
 }
 .fa-house{

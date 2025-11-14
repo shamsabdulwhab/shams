@@ -1,11 +1,15 @@
 import Logo from '../src/assets/images/Logo';
 import Shams from '../src/assets/images/Shams.tsx';
 import { Link } from 'react-router-dom';
+import Particles from './Particles';
 import '../components/header.css';
 
 const Header = () => {
   return (
     <header>
+      <div className="particles-container">
+        <Particles />
+      </div>
       <div className="overlay">
         <div className="div-logo" id="div-logo">
           <Link className="logo" to="/">
@@ -17,7 +21,7 @@ const Header = () => {
           <li><Link to="/">My Projects</Link></li>
           <li><Link to="/contact">Contacts</Link></li>
         </ul>
-        <h1>Welcome to my portfolio</h1>
+        <h1>Welcome to my corner of the internet</h1>
         <div className="mainphoto">       
           < Shams aria-label="photo"/>
         </div>
