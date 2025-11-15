@@ -1,5 +1,6 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -14,7 +15,21 @@ import About from '../pages/About';
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
+
+  // Handle GitHub Pages 404 redirect
+  useEffect(() => {
+    const path = location.pathname;
+    if (path && window.location.search.includes('?/')) {
+      const newPath = window.location.search
+        .slice(2)
+        .split('&')[0]
+        .split('~and~')
+        .join('&');
+      navigate(newPath || '/', { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
     <div className="app-container">
