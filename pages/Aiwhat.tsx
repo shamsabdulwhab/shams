@@ -11,7 +11,8 @@ import loginDashboard from '../src/assets/Ai/login page dashboard.png';
 import plan from '../src/assets/Ai/Plan.png';
 import presentationDebrief from '../src/assets/Ai/presentation debrief hover1.png';
 import signedInHomepage from '../src/assets/Ai/signed in home-page25.png';
-import useCaseVideo from '../src/assets/Ai/1080-julias-journey-to-ai-watt-a-candle-mak-2025-06-04_vdH6I2Zn.mp4';
+// Video file removed from git (too large for GitHub) - add locally if needed
+// import useCaseVideo from '../src/assets/Ai/1080-julias-journey-to-ai-watt-a-candle-mak-2025-06-04_vdH6I2Zn.mp4';
 
 const Aiwhat = () => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -208,6 +209,8 @@ const Aiwhat = () => {
             </div>
           </div>
 
+          {/* Video section commented out - video file too large for GitHub (162MB)
+              To enable: Uncomment the import above and this section, then add the video file locally
           <div className="content-card">
             <h3 className="card-title">Use Case Video</h3>
             <p className="section-text">
@@ -220,6 +223,7 @@ const Aiwhat = () => {
               </video>
             </div>
           </div>
+          */}
 
         </section>
 
