@@ -42,7 +42,7 @@ const Home = () => {
   const projects = [
     {
       id: 1,
-      title: "Website for a Greek artist",
+      title: "Website",
       description: "A portfolio website showcasing the artworks of Erion, created after stakeholder interviews, A/B testing, and user research. Designed in Figma and developed with HTML, CSS, and JavaScript.",
       image: "../src/assets/images/thebigclock.JPG ",
       tech: ["HTML", "CSS", "JavaScript", "Figma"],
