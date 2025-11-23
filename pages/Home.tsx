@@ -51,7 +51,7 @@ const Home = () => {
     },
     {
       id: 3,
-      title: " React Component Reorganization",
+      title: "React Component Reorganization",
       description: "An internal health-focused app by iO The Netherlands B.V. This project involved auditing and reorganizing React components, implementing Storybook for visualization, and writing detailed documentation to streamline future development.",
       tech: ["React", "Storybook", "Sass", "Webpack"],
       link: "/Internship",
@@ -59,9 +59,9 @@ const Home = () => {
     },
     {
       id: 4,
-      title: " Restart Business with AI Agents",
+      title: "Restart Business with AI Agents",
       description: "A futuristic web application where intelligent AI agents collaborate, make decisions, and automate real business tasks. Designed as a digital twin of a creative agency, this proof of concept showcases how companies could be built from scratch with AI at their core in 2025.",
-      tech: ["React", "Node.js", "Agile", "PostgreSQL", "TypeScript", "Figma"],
+      tech: ["React", "Node.js", "Agile", "TypeScript", "Figma"],
       link: "/Aiwhat",
       category: 'school' as const,
     },
