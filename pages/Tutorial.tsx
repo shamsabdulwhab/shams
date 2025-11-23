@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
 import SubHeader from '../components/SubHeader';
 import './Tutorial.css';
 
 // Import images
 import styleGuide1 from '../src/assets/images/style-guide..png';
-import styleGuide2 from '../src/assets/images/style-guide1.png';
 import fontsColors from '../src/assets/images/fonts&colors videolab (2) 1.png';
 import hmw from '../src/assets/images/hmw.png';
 import hmw1 from '../src/assets/images/hmw1.png';
@@ -14,10 +14,89 @@ import categories from '../src/assets/images/Categories (1).png';
 import aboutPage from '../src/assets/images/About (1).png';
 
 const Tutorial = () => {
+  const [activeSection, setActiveSection] = useState('discover');
+  const [currentHmwIndex, setCurrentHmwIndex] = useState(0);
+  
+  const hmwImages = [hmw, hmw1];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['discover', 'define', 'design'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="tutorial-page">
       <SubHeader />
       <div className="tutorial-container">
+        {/* Sidebar Navigation */}
+        <aside className="tutorial-sidebar">
+          <nav className="sidebar-nav">
+            <h3 className="sidebar-title">Contents</h3>
+            <ul className="sidebar-menu">
+              <li>
+                <a 
+                  href="#discover" 
+                  className={activeSection === 'discover' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('discover');
+                  }}
+                >
+                  Discover Phase
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#define" 
+                  className={activeSection === 'define' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('define');
+                  }}
+                >
+                  Define Phase
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#design" 
+                  className={activeSection === 'design' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('design');
+                  }}
+                >
+                  Design
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div className="tutorial-content">
         {/* Hero Section */}
         <section className="tutorial-hero">
           <h1 className="tutorial-title">Tutorial Website</h1>
@@ -28,7 +107,7 @@ const Tutorial = () => {
         </section>
 
         {/* Discover Phase */}
-        <section className="tutorial-section">
+        <section id="discover" className="tutorial-section">
           <div className="section-header">
             <span className="section-number">01</span>
             <h2 className="section-title">Discover Phase</h2>
@@ -41,7 +120,6 @@ const Tutorial = () => {
             </p>
             <div className="image-grid">
               <img src={styleGuide1} alt="style guide 1" className="section-image" />
-              <img src={styleGuide2} alt="style guide 2" className="section-image" />
               <img src={fontsColors} alt="fonts and colors" className="section-image" />
             </div>
           </div>
@@ -52,15 +130,44 @@ const Tutorial = () => {
               How Might We (HMW) questions and Point of View (POV) statements were created to guide the design process 
               and ensure we address the right problems.
             </p>
-            <div className="image-grid">
-              <img src={hmw} alt="HMW" className="section-image" />
-              <img src={hmw1} alt="HMW 2" className="section-image" />
+            <div className="image-carousel">
+              <button 
+                className="carousel-arrow carousel-arrow-left"
+                onClick={() => setCurrentHmwIndex((prev) => (prev === 0 ? hmwImages.length - 1 : prev - 1))}
+                aria-label="Previous image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className="carousel-image-container">
+                <img src={hmwImages[currentHmwIndex]} alt={`HMW ${currentHmwIndex + 1}`} className="carousel-image" />
+              </div>
+              <button 
+                className="carousel-arrow carousel-arrow-right"
+                onClick={() => setCurrentHmwIndex((prev) => (prev === hmwImages.length - 1 ? 0 : prev + 1))}
+                aria-label="Next image"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className="carousel-indicators">
+                {hmwImages.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-indicator ${index === currentHmwIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentHmwIndex(index)}
+                    aria-label={`Go to image ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Define Phase */}
-        <section className="tutorial-section">
+        <section id="define" className="tutorial-section">
           <div className="section-header">
             <span className="section-number">02</span>
             <h2 className="section-title">Define Phase</h2>
@@ -92,11 +199,11 @@ const Tutorial = () => {
           </div>
         </section>
 
-        {/* Develop Phase */}
-        <section className="tutorial-section">
+        {/* Design */}
+        <section id="design" className="tutorial-section">
           <div className="section-header">
             <span className="section-number">03</span>
-            <h2 className="section-title">Develop Phase</h2>
+            <h2 className="section-title">Design</h2>
           </div>
 
           <div className="content-card">
@@ -114,48 +221,13 @@ const Tutorial = () => {
           </div>
         </section>
 
-        {/* Deliver Phase */}
-        <section className="tutorial-section">
-          <div className="section-header">
-            <span className="section-number">04</span>
-            <h2 className="section-title">Deliver Phase</h2>
-          </div>
-
-          <div className="content-card">
-            <h3 className="card-title">Installation Instructions</h3>
-            <p className="section-text">
-              Detailed instructions on how to install and set up the website, particularly focusing on the CMS (Content Management System) in Readme file. 
-              Include step-by-step guidance for individuals who may not have coding experience, explaining how to navigate the CMS, add or edit content, and manage the website.
-            </p>
-            <div className="link-container">
-              <a 
-                href="https://git.fhict.nl/I477553/m3-01-05-designhers/-/blob/main/README.md" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                View Readme File →
-              </a>
-            </div>
-          </div>
-
-          <div className="content-card">
-            <h3 className="card-title">Advice Report to Stakeholders</h3>
-            <p className="section-text">
-              The advice report outlining the capabilities of my website, areas for further development, and any features that may be missing or need improvement.
-            </p>
-            <div className="link-container">
-              <a 
-                href="https://git.fhict.nl/I477553/m3-01-05-designhers" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                View Project on GitLab →
-              </a>
-            </div>
-          </div>
+        {/* Link Container */}
+        <section className="link-container">
+          <a href="/" className="project-link">
+            <span>← Back to Projects</span>
+          </a>
         </section>
+        </div>
       </div>
     </div>
   );

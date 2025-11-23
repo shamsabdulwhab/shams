@@ -253,13 +253,106 @@ class Media {
       transparent: true
     });
 
+    if (!this.image) {
+      // Create a fallback texture if no image is provided
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0)';
+        ctx.fillRect(0, 0, 1, 1);
+        texture.image = canvas;
+        this.program.uniforms.uImageSizes.value = [1, 1];
+      }
+      return;
+    }
+
     const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = this.image;
-    img.onload = () => {
-      texture.image = img;
-      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+    
+    // Handle image load - check if already loaded (cached) or wait for load
+    const setTexture = () => {
+      // Check if WebGL context is still valid
+      if (!this.gl || this.gl.isContextLost()) {
+        return;
+      }
+      
+      // Validate image is fully loaded and has valid dimensions
+      if (!img.complete || img.naturalWidth === 0 || img.naturalHeight === 0) {
+        return;
+      }
+      
+      // Validate all required objects exist
+      if (!texture || !this.program || !this.gl) {
+        return;
+      }
+      
+      try {
+        // Use decode() if available to ensure image is fully decoded before setting texture
+        if (img.decode && typeof img.decode === 'function') {
+          img.decode().then(() => {
+            if (!this.gl || this.gl.isContextLost()) return;
+            if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && texture && this.program) {
+              texture.image = img;
+              this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+              texture.needsUpdate = true;
+            }
+          }).catch(() => {
+            // If decode fails, try setting anyway if image is complete
+            if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && texture && this.program) {
+              texture.image = img;
+              this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+              texture.needsUpdate = true;
+            }
+          });
+        } else {
+          // Fallback for browsers without decode() support - use setTimeout to ensure image is ready
+          setTimeout(() => {
+            if (!this.gl || this.gl.isContextLost()) return;
+            if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0 && texture && this.program) {
+              texture.image = img;
+              this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+              texture.needsUpdate = true;
+            }
+          }, 0);
+        }
+        } catch {
+          // Silently handle errors to avoid console spam
+        }
     };
+    
+    img.onload = () => {
+      setTexture();
+    };
+    
+    img.onerror = () => {
+      // Create a fallback texture (transparent)
+      if (texture && this.program && this.gl && !this.gl.isContextLost()) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = 1;
+          canvas.height = 1;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.fillStyle = 'rgba(255, 255, 255, 0)';
+            ctx.fillRect(0, 0, 1, 1);
+            texture.image = canvas;
+            this.program.uniforms.uImageSizes.value = [1, 1];
+            texture.needsUpdate = true;
+          }
+        } catch {
+          // Silently handle errors
+        }
+      }
+    };
+    
+    // Set src after handlers are set up
+    img.src = this.image;
+    
+    // Check if image is already loaded (cached)
+    if (img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+      setTexture();
+    }
   }
 
   createMesh() {
@@ -402,8 +495,8 @@ class App {
   createRenderer() {
     this.renderer = new Renderer({
       alpha: true,
-      antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2)
+      antialias: false,
+      dpr: 1
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);
@@ -438,6 +531,12 @@ class App {
 
     const galleryItems = items && items.length ? items : defaultItems;
     this.mediasImages = galleryItems.concat(galleryItems);
+    
+    // Clear previous medias if they exist
+    if (this.medias && this.medias.length > 0) {
+      // Previous medias will be cleaned up by destroy()
+    }
+    
     this.medias = this.mediasImages.map((data, index) => {
       return new Media({
         geometry: this.planeGeometry,
@@ -510,13 +609,29 @@ class App {
   }
 
   update() {
-    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
-    const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
-    if (this.medias) {
-      this.medias.forEach(media => media.update(this.scroll, direction));
+    // Check if element is visible in viewport to optimize performance
+    const rect = this.container.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200;
+    
+    // Check if there's actual movement
+    const hasMovement = Math.abs(this.scroll.current - this.scroll.target) > 0.01;
+    const isMoving = Math.abs(this.scroll.current - this.scroll.last) > 0.001;
+    
+    // Only update if visible and (moving or has pending movement)
+    if (isVisible && (hasMovement || isMoving)) {
+      this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+      const direction = this.scroll.current > this.scroll.last ? 'right' : 'left';
+      if (this.medias) {
+        this.medias.forEach(media => media.update(this.scroll, direction));
+      }
+      this.renderer.render({ scene: this.scene, camera: this.camera });
+      this.scroll.last = this.scroll.current;
+    } else if (!isVisible) {
+      // Still update scroll position even when not visible, but don't render
+      this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+      this.scroll.last = this.scroll.current;
     }
-    this.renderer.render({ scene: this.scene, camera: this.camera });
-    this.scroll.last = this.scroll.current;
+    
     this.raf = window.requestAnimationFrame(this.update.bind(this));
   }
 

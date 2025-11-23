@@ -31,7 +31,7 @@ const Aiwhat = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['overview', 'methodology', 'outcomes'];
+      const sections = ['overview', 'methodology', 'design', 'outcomes'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -92,6 +92,18 @@ const Aiwhat = () => {
               </li>
               <li>
                 <a 
+                  href="#design" 
+                  className={activeSection === 'design' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('design');
+                  }}
+                >
+                  Design Mockups
+                </a>
+              </li>
+              <li>
+                <a 
                   href="#outcomes" 
                   className={activeSection === 'outcomes' ? 'active' : ''}
                   onClick={(e) => {
@@ -118,7 +130,7 @@ const Aiwhat = () => {
           <div className="project-meta">
             <span className="meta-item">Stakeholders: Sander & Jaap (Helpr)</span>
             <span className="meta-item">Authors: Shams, Georgi, Arkan, Ivana</span>
-            <span className="meta-item">School Project</span>
+            <span className="meta-item">School Group Project</span>
           </div>
         </section>
 
@@ -167,13 +179,8 @@ const Aiwhat = () => {
               I used Scrum and Agile methodologies to manage the project, enabling iterative development, regular feedback cycles, and adaptive planning throughout the project process.
             </p>
           </div>
-          <div id="define" className="content-card">
-            <h3 className="card-title">Design Phase</h3>
-            <p className="section-text">
-              In the design phase, we conducted detailed brainstorming sessions to define the platform's user model. 
-              We identified two user types: users who prefer full AI assistance and users who prefer manual review. 
-              We decided to develop an open model: a system that is highly AI-driven (around 99% automated), while still allowing human oversight when necessary.
-            </p>
+          <div id="design" className="content-card">
+            <h3 className="card-title">Design Mockups</h3>
             <div className="image-carousel">
               <button 
                 className="carousel-arrow carousel-arrow-left"
@@ -252,6 +259,7 @@ const Aiwhat = () => {
                 <li><strong>Frontend:</strong> React 19</li>
                 <li><strong>Backend:</strong> Node.js (TypeScript)</li>
                 <li><strong>AI Integration:</strong> Langchain</li>
+              <li><strong>Methodology:</strong> Agile</li>
                 <li><strong>Containerization:</strong> Docker</li>
                 <li><strong>Databases:</strong> PostgreSQL (structured data)</li>
                 <li><strong>Authentication:</strong> Clerk</li>
@@ -264,9 +272,9 @@ const Aiwhat = () => {
             <div className="tech-tags">
               <span className="tech-tag">React</span>
               <span className="tech-tag">Node.js</span>
-              <span className="tech-tag">Langchain</span>
+              <span className="tech-tag">Agile</span>
               <span className="tech-tag">PostgreSQL</span>
-              <span className="tech-tag">MongoDB</span>
+              <span className="tech-tag">TypeScript</span>
               <span className="tech-tag">Figma</span>
             </div>
           </div>

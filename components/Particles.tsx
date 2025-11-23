@@ -42,7 +42,7 @@ const Particles = () => {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
+        radius: Math.random() * 3 + 2,
         color: colors[Math.floor(Math.random() * colors.length)]
       });
     }

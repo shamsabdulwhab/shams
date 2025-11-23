@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import './SubHeader.css';
 
 const SubHeader = () => {
+  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const footer = document.getElementById('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header className="sub-header">
       <div className="overlay">
@@ -14,7 +22,7 @@ const SubHeader = () => {
         <ul className="main-nav">
           <li><Link to="/about">About Me</Link></li>
           <li><Link to="/">My Projects</Link></li>
-          <li><Link to="/contact">Contacts</Link></li>
+          <li><a href="#" onClick={handleContactClick}>Contacts</a></li>
         </ul>
       </div>
     </header>

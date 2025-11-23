@@ -5,9 +5,92 @@
 }
 
 .erion-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 60px 20px;
+  display: flex;
+  gap: 40px;
+  position: relative;
+}
+
+.erion-content {
+  flex: 1;
+  max-width: 900px;
+}
+
+/* Sidebar Navigation */
+.erion-sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.sidebar-nav {
+  background: white;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #0575E6 0%, #00F260 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  display: block;
+  padding: 12px 15px;
+  color: #666;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.sidebar-menu a:hover {
+  background: rgba(5, 117, 230, 0.1);
+  color: #0575E6;
+  transform: translateX(5px);
+}
+
+.sidebar-menu a.active {
+  background: transparent;
+  background: linear-gradient(135deg, #0575E6 0%, #00F260 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+.sidebar-menu a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(135deg, #0575E6 0%, #00F260 100%);
+  border-radius: 0 3px 3px 0;
 }
 
 /* Hero Section */
@@ -28,7 +111,7 @@
 }
 
 .erion-subtitle {
-  font-size: var(--big-font);
+  font-size: 1rem;
   color: #666;
   max-width: 700px;
   margin: 0 auto;
@@ -60,7 +143,7 @@
 }
 
 .section-title {
-  font-size: var(--medium-font);
+  font-size: 1.5rem;
   color: #333;
   font-weight: 600;
   margin: 0;
@@ -83,9 +166,9 @@
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   font-weight: 600;
   background: linear-gradient(135deg, #0575E6 0%, #00F260 100%);
   -webkit-background-clip: text;
@@ -95,9 +178,9 @@
 
 .section-text {
   color: #666;
-  line-height: 1.8;
-  font-size: 1rem;
-  margin-bottom: 25px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
 }
 
 .section-text:last-child {
@@ -117,11 +200,23 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
+#discover .image-container {
+  max-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .image-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   margin-top: 30px;
+}
+
+#discover .image-grid .section-image {
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .section-image {
@@ -130,6 +225,11 @@
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+}
+
+#discover .image-container .section-image {
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .section-image:hover {
@@ -207,6 +307,14 @@
 @media (max-width: 768px) {
   .erion-container {
     padding: 40px 15px;
+    flex-direction: column;
+  }
+
+  .erion-sidebar {
+    position: relative;
+    top: 0;
+    width: 100%;
+    margin-bottom: 30px;
   }
 
   .erion-hero {

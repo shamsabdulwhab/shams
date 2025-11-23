@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import SubHeader from '../components/SubHeader';
 import './Erion.css';
 
@@ -11,28 +12,101 @@ import lowFidelity from '../src/assets/images/low-fidelity.png';
 import prototypeVideo from '../src/assets/images/prototype-erion.mp4';
 
 const Erion = () => {
+  const [activeSection, setActiveSection] = useState('discover');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['discover', 'define', 'prototyping'];
+      const scrollPosition = window.scrollY + 200;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="erion-page">
       <SubHeader />
       <div className="erion-container">
+        {/* Sidebar Navigation */}
+        <aside className="erion-sidebar">
+          <nav className="sidebar-nav">
+            <h3 className="sidebar-title">Contents</h3>
+            <ul className="sidebar-menu">
+              <li>
+                <a 
+                  href="#discover" 
+                  className={activeSection === 'discover' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('discover');
+                  }}
+                >
+                  Discover Phase
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#define" 
+                  className={activeSection === 'define' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('define');
+                  }}
+                >
+                  Define Phase
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#prototyping" 
+                  className={activeSection === 'prototyping' ? 'active' : ''}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection('prototyping');
+                  }}
+                >
+                  Prototyping
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <div className="erion-content">
         {/* Hero Section */}
         <section className="erion-hero">
           <h1 className="erion-title">Website for a Greek Artist</h1>
-          <p className="erion-subtitle">A portfolio website showcasing the artworks of Erion, created after stakeholder interviews, A/B testing, and user research.</p>
+          <p className="erion-subtitle">A portfolio website for Greek artist Erion, created through interviews, A/B testing, and user research.</p>
         </section>
 
         {/* Discover Phase */}
-        <section className="erion-section">
+        <section id="discover" className="erion-section">
           <div className="section-header">
-            <span className="section-number">01</span>
             <h2 className="section-title">Discover Phase</h2>
           </div>
           
           <div className="content-card">
             <p className="section-text">
-              After conducting interviews with Erion, our client, we proceeded to create an empathy map based on insights gained from the interview.
-              This map helped us understand Erion's perspectives, needs, and challenges more deeply.
-              Additionally, we conducted thorough research, prepared interview questions and surveys, and collected valuable data.
+              We interviewed Erion and created an empathy map to understand his needs and challenges. We also did research and collected data through surveys.
             </p>
             <div className="image-container">
               <img src={empathyMap} alt="empathy-map" className="section-image" />
@@ -42,8 +116,7 @@ const Erion = () => {
           <div className="content-card">
             <h3 className="card-title">Vision Statement</h3>
             <p className="section-text">
-              Our vision statement, crafted collaboratively with Erion, serves as our guiding light throughout the project. 
-              This vision statement ensures that our efforts remain focused on delivering a solution that aligns with Erion's aspirations and meets the needs of the target audience.
+              We created a vision statement with Erion to guide the project and ensure the solution meets his goals and audience needs.
             </p>
             <div className="image-container">
               <img src={visionStatement} alt="vision statement" className="section-image" />
@@ -53,9 +126,7 @@ const Erion = () => {
           <div className="content-card">
             <h3 className="card-title">Personas</h3>
             <p className="section-text">
-              We utilized the insights gathered from Erion's interview to create personas, allowing us to better empathize with our users 
-              and tailor our solutions to meet their specific needs. This comprehensive approach ensured that our development process was 
-              informed, user-centered, and focused on delivering meaningful results.
+              We created personas based on the interview insights to better understand users and design solutions that meet their needs.
             </p>
             <div className="image-grid">
               <img src={persona1} alt="persona 1" className="section-image" />
@@ -65,16 +136,14 @@ const Erion = () => {
         </section>
 
         {/* Define Phase */}
-        <section className="erion-section">
+        <section id="define" className="erion-section">
           <div className="section-header">
-            <span className="section-number">02</span>
             <h2 className="section-title">Define Phase</h2>
           </div>
           
           <div className="content-card">
             <p className="section-text">
-              As part of our process, we developed a site map to visualize the structure and organization of the platform. 
-              The prototype (low-fidelity, mid-fidelity and high-fidelity) helped refine our ideas step by step, from basic concepts to detailed designs.
+              We created a site map to show the website structure. We built prototypes (low, mid, and high-fidelity) to refine our designs step by step.
             </p>
             <div className="image-grid">
               <img src={siteMap} alt="site-map" className="section-image" />
@@ -82,6 +151,14 @@ const Erion = () => {
             </div>
           </div>
 
+        </section>
+
+        {/* Prototyping */}
+        <section id="prototyping" className="erion-section">
+          <div className="section-header">
+            <h2 className="section-title">Prototyping</h2>
+          </div>
+          
           <div className="content-card">
             <h3 className="card-title">High-Fidelity Prototype</h3>
             <div className="video-container">
@@ -92,35 +169,13 @@ const Erion = () => {
           </div>
         </section>
 
-        {/* Develop & Deliver Phase */}
-        <section className="erion-section">
-          <div className="section-header">
-            <span className="section-number">03</span>
-            <h2 className="section-title">Develop & Deliver Phase</h2>
-          </div>
-          
-          <div className="content-card">
-            <p className="section-text">
-              In the Develop and Deliver phases, we proceeded with user testing after finalizing the prototype. 
-              Following this, I implemented the code using HTML, CSS, and JavaScript.
-            </p>
-            <p className="section-text">
-              <strong>During the Deliver phase,</strong> the focus shifted towards documenting the code. 
-              This involved creating comprehensive documentation to ensure clarity and facilitate maintenance. 
-              Finally, the project was delivered to the stakeholders.
-            </p>
-            <div className="link-container">
-              <a 
-                href="https://git.fhict.nl/I476896/s2023_m2_cb01_group2_tableau_de_lest" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="project-link"
-              >
-                View Project on GitLab →
-              </a>
-            </div>
-          </div>
+        {/* Link Container */}
+        <section className="link-container">
+          <a href="/" className="project-link">
+            <span>← Back to Projects</span>
+          </a>
         </section>
+        </div>
       </div>
     </div>
   );

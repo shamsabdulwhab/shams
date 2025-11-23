@@ -2,8 +2,27 @@ import { useEffect, useState } from 'react';
 import SubHeader from '../components/SubHeader';
 import './Hack.css';
 
+// TODO: Replace these placeholder imports with actual design images
+// Placeholder images - replace with your actual design images
+// import designImage1 from '../src/assets/images/design1.png';
+// import designImage2 from '../src/assets/images/design2.png';
+// import designImage3 from '../src/assets/images/design3.png';
+// import designImage4 from '../src/assets/images/design4.png';
+// import designImage5 from '../src/assets/images/design5.png';
+
 const Hack = () => {
   const [activeSection, setActiveSection] = useState('overview');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // TODO: Replace with actual design images when uploaded
+  // Placeholder array - replace with your actual images
+  const designImages: string[] = [
+    // designImage1,
+    // designImage2,
+    // designImage3,
+    // designImage4,
+    // designImage5,
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,7 +101,7 @@ const Hack = () => {
           <div className="project-meta">
             <span className="meta-item">Client: Stop Straat Intimidatie</span>
             <span className="meta-item">Project: Educational Digital Tool</span>
-            <span className="meta-item">School Project</span>
+            <span className="meta-item">School Group Project</span>
           </div>
         </section>
 
@@ -123,6 +142,56 @@ const Hack = () => {
             </div>
           </div>
 
+          <div className="content-card">
+            <h3 className="card-title">Design Phase</h3>
+            <p className="section-text">
+              During the design phase, we created wireframes, prototypes, and design mockups to visualize the digital learning tool. 
+              The design focuses on age-appropriate interfaces, engaging interactions, and clear visual communication.
+            </p>
+            {designImages.length > 0 ? (
+              <div className="image-carousel">
+                <button 
+                  className="carousel-arrow carousel-arrow-left"
+                  onClick={() => setCurrentImageIndex((prev) => (prev === 0 ? designImages.length - 1 : prev - 1))}
+                  aria-label="Previous image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                <div className="carousel-image-container">
+                  <img src={designImages[currentImageIndex]} alt={`Design ${currentImageIndex + 1}`} className="carousel-image" />
+                </div>
+                <button 
+                  className="carousel-arrow carousel-arrow-right"
+                  onClick={() => setCurrentImageIndex((prev) => (prev === designImages.length - 1 ? 0 : prev + 1))}
+                  aria-label="Next image"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                <div className="carousel-indicators">
+                  {designImages.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`carousel-indicator ${index === currentImageIndex ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIndex(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="image-carousel" style={{ minHeight: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f8f9fa', borderRadius: '15px', border: '2px dashed #0575E6' }}>
+                <p style={{ color: '#666', fontSize: '1rem', textAlign: 'center', padding: '20px' }}>
+                  Design images will be displayed here once uploaded.<br />
+                  Add your images to the designImages array in Hack.tsx
+                </p>
+              </div>
+            )}
+          </div>
+
         </section>
 
         {/* Expected Outcomes */}
@@ -153,11 +222,6 @@ const Hack = () => {
                 <div className="result-icon">💡</div>
                 <h4 className="result-title">Engagement</h4>
                 <p className="result-text">Interactive and engaging prototype suitable for classroom use</p>
-              </div>
-              <div className="result-item">
-                <div className="result-icon">✅</div>
-                <h4 className="result-title">Ethical Design</h4>
-                <p className="result-text">Ethically responsible tool that avoids victim blaming</p>
               </div>
             </div>
           </div>
