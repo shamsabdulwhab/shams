@@ -1,7 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Home from '../pages/Home'
@@ -12,6 +11,7 @@ import Aiwhat from '../pages/Aiwhat'
 import Hack from '../pages/Hack';
 import ForParents from '../pages/ForParents';
 import About from '../pages/About';
+import GroupRetrospective from '../pages/GroupRetrospective';
 
 function AppContent() {
   const location = useLocation();
@@ -45,6 +45,7 @@ function AppContent() {
           <Route path="/Aiwhat" element={<Aiwhat />} />
           <Route path="/Hack" element={<Hack />} />
           <Route path="/ForParents" element={<ForParents />} />
+          <Route path="/GroupRetrospective" element={<GroupRetrospective />} />
         </Routes>
       </main>
       <Footer />

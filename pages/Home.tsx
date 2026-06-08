@@ -72,6 +72,14 @@ const Home = () => {
     tech: ["Flutter", "Dart", "Health Data APIs", "Figma"],
     link: "/ForParents",
     category: 'school' as const,
+  },
+  {
+    id: 7,
+    title: "Group Reflection Platform",
+    description: "An interactive reflection platform that helps students and teams reflect on collaboration, feedback, and personal development. Participants join sessions via QR code, provide anonymous peer feedback on their devices, and see visualized results on a shared screen to encourage deeper self-awareness and constructive conversations.",
+    tech: ["React", "TypeScript", "Vite", "Figma"],
+    link: "/GroupRetrospective",
+    category: 'school' as const,
   }
   ];
 
