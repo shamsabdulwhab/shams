@@ -14,14 +14,8 @@ Personal portfolio website showcasing school, internship, and personal projects.
 
 ## Featured Projects
 
-| Project | Category |
-|---------|----------|
-| Tutorial Website | School |
-| Restart Business with AI Agents | School |
-| ParentsApp: Elderly Health Tracker | School |
-| React Component Reorganization (OKEEJ / iO) | Internship |
-| Group Reflection Platform | School |
-
+Tutorial Website, Restart Business with AI Agents, ParentsApp: Elderly Health Tracker, React Component Reorganization (OKEEJ / iO)
+, Group Reflection Platform
 Each project has its own detail page with overview, process, and outcomes.
 
 ## Getting Started

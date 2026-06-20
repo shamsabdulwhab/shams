@@ -2,16 +2,23 @@ import { useEffect, useState } from 'react';
 import SubHeader from '../components/SubHeader';
 import './Hack.css';
 
-// TODO: Replace with Figma screens, wireframes, or final designs
-// import designImage1 from '../src/assets/images/design1.png';
+import homePage from '../src/assets/Reflection/Home-page1 (2).png';
+import joinScreen from '../src/assets/Reflection/Join Screen.png';
+import myPhoneScreen from '../src/assets/Reflection/My Phone Screen.png';
+import bigScreen from '../src/assets/Reflection/Big Screen.png';
+import personalEndScreen from '../src/assets/Reflection/Personal End Screen.png';
+
+const designImages = [
+  { src: homePage, alt: 'Home page — Figma design' },
+  { src: joinScreen, alt: 'Join screen — QR code session entry' },
+  { src: myPhoneScreen, alt: 'Mobile phone screen — participant feedback' },
+  { src: bigScreen, alt: 'Shared big screen — group feedback visualization' },
+  { src: personalEndScreen, alt: 'Personal end screen — individual reflection' },
+];
 
 const GroupRetrospective = () => {
   const [activeSection, setActiveSection] = useState('overview');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const designImages: string[] = [
-    // designImage1,
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -163,7 +170,7 @@ const GroupRetrospective = () => {
                     </svg>
                   </button>
                   <div className="carousel-image-container">
-                    <img src={designImages[currentImageIndex]} alt={`Design ${currentImageIndex + 1}`} className="carousel-image" />
+                    <img src={designImages[currentImageIndex].src} alt={designImages[currentImageIndex].alt} className="carousel-image" />
                   </div>
                   <button
                     className="carousel-arrow carousel-arrow-right"
@@ -247,7 +254,7 @@ const GroupRetrospective = () => {
             <div className="content-card">
               <h3 className="card-title">App Link</h3>
               <p className="section-text" style={{ textAlign: 'center', fontSize: '1.2rem', fontWeight: 600, color: '#0575E6' }}>
-                Coming Soon
+              https://project-reflection.netlify.app/
               </p>
             </div>
           </section>
